@@ -9,19 +9,12 @@
  * @return {boolean} - True if the user input is valid, false otherwise
  */
 function checkIsValidUserInput(userInput) {
-  switch (true) {
-    case userInput[0] === '0':
-      return false;
+  const isFourDigits = userInput.length === 4;
+  const hasUniqueDigits = new Set(userInput.split('')).size === 4;
+  const isNumber = !isNaN(+userInput);
+  const doesNotStartWithZero = userInput[0] !== '0';
 
-    case isNaN(+userInput):
-      return false;
-
-    case new Set(userInput.split('')).size !== 4:
-      return false;
-
-    default:
-      return true;
-  }
+  return isFourDigits && hasUniqueDigits && isNumber && doesNotStartWithZero;
 }
 
 module.exports = {
